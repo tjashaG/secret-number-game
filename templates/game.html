@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} The guessing game! {% endblock title %}
+
+{% block main %}
+<nav class="navbar navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+          <button class="btn btn-outline-light me-2" type="button"><a href="{{ url_for('index') }}">My profile</a></button>
+          <form class="d-flex">
+            <button class="btn btn-sm btn-outline-light" type="button"><a href="{{ url_for('sign_out') }}">Sign out</a></button>
+          </form>
+        </form>
+      </nav>
+
+<h2>Welcome to the guessing game</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+<div class="container">
+    <form method="post" action="/game">
+      <div class="form-group">
+        <label for="guess">Guess the secret number between 1 and 100</label>
+        <input type="number" name="guess" class="form-control" id="guess" aria-describedby="emailHelp" autocomplete="off">
+      </div>
+         <button type="submit" class="btn btn-primary">Guess!</button>
+    </form>
+    </div>
+
+{% if guess == True %}
+<button class="btn btn-outline-primary btn-lg" type="button"><a href="/game">Play again!</a></button>
+{% endif%}
+
+{% endblock main %}

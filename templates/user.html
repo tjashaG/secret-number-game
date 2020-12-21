@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}My profile{% endblock %}
+{% block main %}
+ <nav class="navbar navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+          <button class="btn btn-outline-light me-2" type="button"><a href="/game">Play game</a></button>
+          <button class="btn btn-outline-light me-2" type="button"><a href="{{ url_for('index') }}">My profile</a></button>
+          <form class="d-flex">
+            <button class="btn btn-sm btn-outline-light" type="button"><a href="{{ url_for('sign_out') }}">Sign out</a></button>
+          </form>
+        </form>
+      </nav>
+  <div class="container">
+  <h3>Welcome back, {{ user.username }}!</h3>
+
+  <br>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Games played</th>
+      <th scope="col">Top score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.games_played }}</td>
+      <td>{{ user.attempts }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+{% endblock %}
